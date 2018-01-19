@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flow name="SkiingFlow" package="iristk.app.skiing" 
+	initial="Start"	xmlns="iristk.flow" xmlns:p="iristk.flow.param" xmlns:dialog="iristk.flow.DialogFlow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="iristk.flow flow.xsd iristk.flow.DialogFlow DialogFlow.xsd">
+	
+	
+	<state id="Start">
+		<onentry>
+			<dialog:say>Which day you're going to ski?</dialog:say>
+			<goto state="Answer"/>
+		</onentry>
+	</state>
+	
+	<state id="Answer" extends="Dialog">
+		<onentry>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:number">
+			<if cond="asInteger(event:sem:number) %2 == 0">
+				<dialog:say>The weather is good for skiing on this day.</dialog:say>
+				<goto state="More"/>
+			<else/>
+				<dialog:say>The weather is bad for skiing on this day.</dialog:say>
+				<goto state="Alternative"/>
+			</if>
+		</onevent>
+	</state>
+	
+	<state id="Alternative" extends="Dialog">
+		<onentry>
+			<dialog:say>Do you want me to suggest an alternative day this week?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<dialog:say>Friday.</dialog:say>
+			<goto state="More"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:no">
+			<dialog:say>Okay, goodbye</dialog:say>
+			<exec>System.exit(0)</exec>
+		</onevent>		
+	</state>
+	<state id="More" extends="Dialog">
+		<onentry>
+			<dialog:say>Do you have any further questions?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		
+		<onevent name="sense.user.speak">
+			<dialog:say>Okay, goodbye</dialog:say>
+			<exec>System.exit(0)</exec>
+		</onevent>		
+	</state>
+	
+	<state id="Dialog">
+		<onevent name="sense.user.silence">
+			<dialog:say>I am sorry, I didn't hear anything.</dialog:say>
+			<reentry/>
+		</onevent>
+		<onevent name="sense.user.speak">
+			<dialog:say>I am sorry, I didn't get that.</dialog:say>
+			<reentry/>
+		</onevent>
+	</state>
+	
+
+</flow>

@@ -1,0 +1,8 @@
+<package name="skiing" version="0.1.0">
+	<run>
+		<command name="skiing" class="iristk.app.skiing.SkiingSystem"/>
+	</run>
+	<classpath>
+		<src path="src" output="bin"/>
+	</classpath>
+</package>
