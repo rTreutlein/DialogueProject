@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xml:lang="en-US" version="1.0" root="root"
+	xmlns="http://www.w3.org/2001/06/grammar" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/2001/06/grammar http://www.iristk.net/xml/srgs.xsd" tag-format="semantics/1.0">
+
+  <rule id="root" scope="public">
+      <one-of>
+          <item>Monday<tag>out.day=0</tag></item>
+          <item>Tuesday<tag>out.day=1</tag></item>
+          <item>Wednesday<tag>out.day=2</tag></item>
+          <item>Thursday<tag>out.day=3</tag></item>
+          <item>Friday<tag>out.day=4</tag></item>
+          <item>Saturday<tag>out.day=5</tag></item>
+          <item>Sunday<tag>out.day=6</tag></item>
+          <item>yes<tag>out.yes=1</tag></item>
+          <item>no<tag>out.no=1</tag></item>
+          <item>I don't know<tag>out.dontKnow=1</tag></item>
+          <item>Arizona Snowbowl<tag>out.loc=0</tag></item>
+          <item>Bear Mountain<tag>out.loc=1</tag></item>
+          <item>Bear Valley<tag>out.loc=2</tag></item>
+          <item>Big Boulder<tag>out.loc=3</tag></item>
+          <item>Bogus Basin<tag>out.loc=4</tag></item>
+      </one-of>
+  </rule>
+  
+</grammar>

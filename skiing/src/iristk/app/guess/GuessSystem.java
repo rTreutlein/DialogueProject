@@ -8,7 +8,7 @@
  * Contributors:
  *     Gabriel Skantze - initial API and implementation
  ******************************************************************************/
-package iristk.app.skiing;
+package iristk.app.guess;
 
 import iristk.speech.SpeechGrammarContext;
 import iristk.speech.Voice.Gender;
@@ -20,9 +20,9 @@ import iristk.util.Language;
 import iristk.cfg.SRGSGrammar;
 import iristk.flow.FlowModule;
 
-public class SkiingSystem {
+public class GuessSystem {
 
-	public SkiingSystem() throws Exception {
+	public GuessSystem() throws Exception {
 		// Create the system
 		SimpleDialogSystem system = new SimpleDialogSystem(this.getClass());
 		
@@ -42,17 +42,17 @@ public class SkiingSystem {
 		system.setupSynthesizer(new WindowsSynthesizer(), Gender.FEMALE);
 		
 		// Add the flow
-		system.addModule(new FlowModule(new SkiingFlow()));
+		system.addModule(new FlowModule(new GuessFlow()));
 		
 		// Load a grammar in the recognizer
-		system.loadContext("default", new SpeechGrammarContext(new SRGSGrammar(system.getPackageFile("SkiingGrammar.xml"))));
+		system.loadContext("default", new SpeechGrammarContext(new SRGSGrammar(system.getPackageFile("GuessGrammar.xml"))));
 		
 		// Start the interaction
 		system.sendStartSignal();
 	}
 
 	public static void main(String[] args) throws Exception {
-		new SkiingSystem();
+		new GuessSystem();
 	}
 
 }
