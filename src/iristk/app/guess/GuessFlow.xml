@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flow name="GuessFlow" package="iristk.app.guess" 
+	initial="Start"	xmlns="iristk.flow" xmlns:p="iristk.flow.param" xmlns:dialog="iristk.flow.DialogFlow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="iristk.flow flow.xsd iristk.flow.DialogFlow DialogFlow.xsd">
+	
+	<import class="java.util.Random"/>
+	<var name="data" type="Integer[][]"/>
+	<var name="ran" type="Random" />
+	<var name="days" type="String[]"/>
+	<var name="quality" type="String[]"/>
+	<var name="locations" type="String[]"/>
+	<var name="final_loc" type="Integer"/>
+	<var name="final_date" type="Integer"/>
+	<state id="Start">
+		<onentry>
+			<dialog:say>Hello, shall we start?</dialog:say>	
+			<dialog:listen/>
+		</onentry>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<exec>ran = new Random()</exec> 
+			<exec>data = new Integer[5][7]</exec>
+			<exec>days = new String[7]</exec>
+			<exec>quality = new String[3]</exec>
+			<exec>locations = new String[5]</exec>
+			<exec>final_date = -1</exec>
+			<exec>final_loc = -1</exec>
+			
+			<repeat times="5" handler="i">
+				<repeat times="7" handler="j">
+					<exec>data[i.getPosition()][j.getPosition()] = new Integer(ran.nextInt(3))</exec>
+				</repeat>
+			</repeat>
+			
+			<exec>
+				locations[0] = new String("Arizona Snowbowl");
+				locations[1] = new String("Bear Mountain");
+				locations[2] = new String("Bear Valley");
+				locations[3] = new String("Big Boulder");
+				locations[4] = new String("Bogus Basin");
+			</exec>
+			<exec>
+				days[0] = new String("Monday");
+				days[1] = new String("Tuesday");
+				days[2] = new String("Wednesday");
+				days[3] = new String("Thursday");
+				days[4] = new String("Friday");
+				days[5] = new String("Saturday");
+				days[6] = new String("Sunday");
+			</exec>
+			<exec>
+				quality[0] = new String("Unusable");
+				quality[1] = new String("Okay");
+				quality[2] = new String("Great");
+			</exec>
+			<goto state="Where"/>
+		</onevent>
+	</state>
+	
+	<state id="Where" extends="Dialog">
+		
+		<onentry>
+			<dialog:say>Where do you want to go?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:loc">
+			<exec>final_loc = (Integer)event:sem:loc;</exec>
+			<dialog:say>The weather is great for skiing on the following days:</dialog:say>
+			<repeat times="7" handler="d">
+				<if cond="data[(Integer)event:sem:loc][d.getPosition()] == 2">
+					<dialog:say><expr>days[d.getPosition()]</expr></dialog:say>
+				</if>
+			</repeat>
+			
+			<goto state="Pick_Date"/>
+		</onevent>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:loc and event?:sem:day">
+			<exec>final_loc = (Integer)event:sem:loc</exec>
+			<exec>final_date = (Integer)event:sem:day</exec>
+			<if cond="data[final_loc][fianl_date] == 2">
+				<dialog:say>The snow conditions for this day are Greate. Have Fun.</dialog:say>
+				<goto state="Final"/>
+			</if>
+			<if cond="data[final_loc][fianl_date] == 1">
+				<dialog:say>The snow conditions for this day are Okay but not Great.</dialog:say>
+				<goto state="Confirm"/>
+			</if>
+			<if cond="data[final_loc][fianl_date] == 0">
+				<dialog:say>The won't be enough snow on this day to go skiing.</dialog:say>
+				<goto state="ChangeDateOrLoc"/>
+			</if>			
+
+		</onevent>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:dontKnow">
+		<goto state="When"/>
+		</onevent>
+	</state>
+	
+	<state id="Pick_Date" extends="Dialog">
+		<onentry>
+			<dialog:say>Please pick a date, Otherwise shall I suggest another location?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:day">
+			<exec>final_date = (Integer)event:sem:day</exec>
+			<goto state="Final"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<goto state="When"/>
+		</onevent>		
+	</state>
+	
+	<state id="When" extends="Dialog">
+		<onentry>
+			<dialog:say>Pick a day for the next week, please!</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:day">
+			<exec>final_date = (Integer)event:sem:day</exec>
+			<dialog:say>On <expr>days[final_date]</expr> the weather would be great for skiing at the following locations:</dialog:say>
+			<repeat times="5" handler="l">
+				<if cond="data[l.getPosition()][(Integer)event:sem:day] == 2">
+					<dialog:say><expr>locations[l.getPosition()]</expr></dialog:say>
+				</if>
+			</repeat>
+			<goto state="Pick_location"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<goto state="When"/>
+		</onevent>		
+	</state>
+	
+	<state id="Pick_location" extends="Dialog">
+		<onentry>
+			<dialog:say>Please pick a location, Otherwise do you want to consider another day?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:loc">
+			<exec>final_loc = (Integer)event:sem:loc;</exec>
+			<goto state="Final"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<goto state="When"/>
+		</onevent>		
+	</state>
+	
+	<state id="Confirm" extends="Dialog">
+		<onentry>
+			<dialog:say>Is this good enough?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<dialog:say>Okay, goodbye</dialog:say>
+			<exec>System.exit(0);</exec>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:no">
+			<goto state="Where"/>
+		</onevent>		
+	</state>
+	
+	<state id="ChangeDateOrLoc" extends="Dialog">
+		<onentry>
+			<dialog:say>Would you like change the Date, Location or start from the begginig?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:cdate">
+			<exec>final_date = -1</exec>
+			<goto state="Pick_Date"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:cloc">
+			<exec>final_loc = -1</exec>
+			<goto state="Pick_location"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:start">
+			<goto state="Where"/>
+		</onevent>				
+	</state>
+	
+	<state id="Final" extends="Dialog">
+		<onentry>
+			<dialog:say>Do you have any further questions?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		
+		<onevent name="sense.user.speak">
+			<dialog:say>Okay, goodbye</dialog:say>
+			<exec>System.exit(0);</exec>
+		</onevent>		
+	</state>
+	
+	<state id="Dialog">
+		<onevent name="sense.user.silence">
+			<dialog:say>I am sorry, I didn't hear anything.</dialog:say>
+			<reentry/>
+		</onevent>
+		<onevent name="sense.user.speak">
+			<dialog:say>I am sorry, I didn't get that.</dialog:say>
+			<reentry/>
+		</onevent>
+	</state>
+	
+
+</flow>
