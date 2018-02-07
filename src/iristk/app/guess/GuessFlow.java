@@ -15,6 +15,7 @@ public class GuessFlow extends iristk.flow.Flow {
 	private Integer[][] data;
 	private Random ran;
 	private String[] days;
+	private String[] quality;
 	private String[] locations;
 	private Integer final_loc;
 	private Integer final_date;
@@ -46,6 +47,14 @@ public class GuessFlow extends iristk.flow.Flow {
 		this.days = value;
 	}
 
+	public String[] getQuality() {
+		return this.quality;
+	}
+
+	public void setQuality(String[] value) {
+		this.quality = value;
+	}
+
 	public String[] getLocations() {
 		return this.locations;
 	}
@@ -75,6 +84,7 @@ public class GuessFlow extends iristk.flow.Flow {
 		if (name.equals("data")) return this.data;
 		if (name.equals("ran")) return this.ran;
 		if (name.equals("days")) return this.days;
+		if (name.equals("quality")) return this.quality;
 		if (name.equals("locations")) return this.locations;
 		if (name.equals("final_loc")) return this.final_loc;
 		if (name.equals("final_date")) return this.final_date;
@@ -104,27 +114,27 @@ public class GuessFlow extends iristk.flow.Flow {
 		public void onentry() throws Exception {
 			int eventResult;
 			Event event = new Event("state.enter");
-			// Line: 14
+			// Line: 15
 			try {
 				EXECUTION: {
-					int count = getCount(1285044316) + 1;
-					incrCount(1285044316);
+					int count = getCount(1607460018) + 1;
+					incrCount(1607460018);
 					iristk.flow.DialogFlow.say state0 = new iristk.flow.DialogFlow.say();
 					StringCreator string1 = new StringCreator();
 					string1.append("Hello, shall we start?");
 					state0.setText(string1.toString());
-					if (!flowThread.callState(state0, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 14, 12)))) {
+					if (!flowThread.callState(state0, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 15, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 					iristk.flow.DialogFlow.listen state2 = new iristk.flow.DialogFlow.listen();
-					if (!flowThread.callState(state2, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 14, 12)))) {
+					if (!flowThread.callState(state2, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 15, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 14, 12));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 15, 12));
 			}
 		}
 
@@ -134,53 +144,15 @@ public class GuessFlow extends iristk.flow.Flow {
 			int count;
 			// Line: 19
 			try {
-				count = getCount(1811075214) + 1;
+				count = getCount(1588970020) + 1;
 				if (event.triggers("sense.user.speak")) {
-					if (event.has("sem:yes")) {
-						incrCount(1811075214);
+					if (event.has("sem:no")) {
+						incrCount(1588970020);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
 							// Line: 20
-							ran = new Random();
-							// Line: 21
-							data = new Integer[5][7];
-							// Line: 22
-							days = new String[7];
-							// Line: 23
-							locations = new String[5];
-							// Line: 24
-							{
-								RepeatHandler i = new RepeatHandler(5);
-								while (i.getPosition() < i.getLength()) {
-									// Line: 25
-									{
-										RepeatHandler j = new RepeatHandler(7);
-										while (j.getPosition() < j.getLength()) {
-											// Line: 27
-											data[i.getPosition()][j.getPosition()] = new Integer(ran.nextInt(3));
-											j.next();
-										}
-									}
-									i.next();
-								}
-							}
-							// Line: 30
-							locations[0] = new String("Arizona Snowbowl");
-							locations[1] = new String("Bear Mountain");
-							locations[2] = new String("Bear Valley");
-							locations[3] = new String("Big Boulder");
-							locations[4] = new String("Bogus Basin");
-							// Line: 36
-							days[0] = new String("Monday");
-							days[1] = new String("Tuesday");
-							days[2] = new String("Wednesday");
-							days[3] = new String("Thursday");
-							days[4] = new String("Friday");
-							days[5] = new String("Saturday");
-							days[6] = new String("Sunday");
-							// Line: 43
-							Where state3 = new Where();
-							flowThread.gotoState(state3, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 43, 25)));
+							Final state3 = new Final();
+							flowThread.gotoState(state3, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 20, 25)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
@@ -188,7 +160,75 @@ public class GuessFlow extends iristk.flow.Flow {
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 19, 58));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 19, 57));
+			}
+			// Line: 22
+			try {
+				count = getCount(1940447180) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:yes")) {
+						incrCount(1940447180);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 23
+							ran = new Random();
+							// Line: 24
+							data = new Integer[5][7];
+							// Line: 25
+							days = new String[7];
+							// Line: 26
+							quality = new String[3];
+							// Line: 27
+							locations = new String[5];
+							// Line: 28
+							final_date = -1;
+							// Line: 29
+							final_loc = -1;
+							// Line: 31
+							{
+								RepeatHandler i = new RepeatHandler(5);
+								while (i.getPosition() < i.getLength()) {
+									// Line: 32
+									{
+										RepeatHandler j = new RepeatHandler(7);
+										while (j.getPosition() < j.getLength()) {
+											// Line: 33
+											data[i.getPosition()][j.getPosition()] = new Integer(ran.nextInt(3));
+											j.next();
+										}
+									}
+									i.next();
+								}
+							}
+							// Line: 37
+							locations[0] = new String("Arizona Snowbowl");
+							locations[1] = new String("Bear Mountain");
+							locations[2] = new String("Bear Valley");
+							locations[3] = new String("Big Boulder");
+							locations[4] = new String("Bogus Basin");
+							// Line: 44
+							days[0] = new String("Monday");
+							days[1] = new String("Tuesday");
+							days[2] = new String("Wednesday");
+							days[3] = new String("Thursday");
+							days[4] = new String("Friday");
+							days[5] = new String("Saturday");
+							days[6] = new String("Sunday");
+							// Line: 53
+							quality[0] = new String("Unusable");
+							quality[1] = new String("Okay");
+							quality[2] = new String("Great");
+							// Line: 58
+							Where state4 = new Where();
+							flowThread.gotoState(state4, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 58, 25)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 22, 58));
 			}
 			eventResult = super.onFlowEvent(event);
 			if (eventResult != EVENT_IGNORED) return eventResult;
@@ -214,27 +254,27 @@ public class GuessFlow extends iristk.flow.Flow {
 		public void onentry() throws Exception {
 			int eventResult;
 			Event event = new Event("state.enter");
-			// Line: 49
+			// Line: 64
 			try {
 				EXECUTION: {
-					int count = getCount(1143839598) + 1;
-					incrCount(1143839598);
-					iristk.flow.DialogFlow.say state4 = new iristk.flow.DialogFlow.say();
-					StringCreator string5 = new StringCreator();
-					string5.append("Where do you want to go?");
-					state4.setText(string5.toString());
-					if (!flowThread.callState(state4, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 49, 12)))) {
+					int count = getCount(2143192188) + 1;
+					incrCount(2143192188);
+					iristk.flow.DialogFlow.say state5 = new iristk.flow.DialogFlow.say();
+					StringCreator string6 = new StringCreator();
+					string6.append("Where do you want to go?");
+					state5.setText(string6.toString());
+					if (!flowThread.callState(state5, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 64, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
-					iristk.flow.DialogFlow.listen state6 = new iristk.flow.DialogFlow.listen();
-					if (!flowThread.callState(state6, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 49, 12)))) {
+					iristk.flow.DialogFlow.listen state7 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state7, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 64, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 49, 12));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 64, 12));
 			}
 		}
 
@@ -242,190 +282,86 @@ public class GuessFlow extends iristk.flow.Flow {
 		public int onFlowEvent(Event event) throws Exception {
 			int eventResult;
 			int count;
-			// Line: 53
+			// Line: 69
 			try {
-				count = getCount(250075633) + 1;
-				if (event.triggers("sense.user.speak")) {
-					if (event.has("sem:loc")) {
-						incrCount(250075633);
-						eventResult = EVENT_CONSUMED;
-						EXECUTION: {
-							// Line: 54
-							final_loc = (Integer)event.get("sem:loc");
-							iristk.flow.DialogFlow.say state7 = new iristk.flow.DialogFlow.say();
-							StringCreator string8 = new StringCreator();
-							string8.append("The weather is great for skiing on the following days:");
-							state7.setText(string8.toString());
-							if (!flowThread.callState(state7, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 53, 58)))) {
-								eventResult = EVENT_ABORTED;
-								break EXECUTION;
-							}
-							// Line: 56
-							{
-								RepeatHandler d = new RepeatHandler(7);
-								while (d.getPosition() < d.getLength()) {
-									// Line: 57
-									if (data[(Integer)event.get("sem:loc")][d.getPosition()] == 2) {
-										iristk.flow.DialogFlow.say state9 = new iristk.flow.DialogFlow.say();
-										StringCreator string10 = new StringCreator();
-										// Line: 57
-										string10.append(days[d.getPosition()]);
-										state9.setText(string10.toString());
-										if (!flowThread.callState(state9, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 57, 67)))) {
-											eventResult = EVENT_ABORTED;
-											break EXECUTION;
-										}
-									}
-									d.next();
-								}
-							}
-							// Line: 62
-							Pick_Date state11 = new Pick_Date();
-							flowThread.gotoState(state11, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 62, 29)));
-							eventResult = EVENT_ABORTED;
-							break EXECUTION;
-						}
-						if (eventResult != EVENT_IGNORED) return eventResult;
-					}
-				}
-			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 53, 58));
-			}
-			// Line: 65
-			try {
-				count = getCount(425918570) + 1;
+				count = getCount(1100439041) + 1;
 				if (event.triggers("sense.user.speak")) {
 					if (event.has("sem:loc") && event.has("sem:day")) {
-						incrCount(425918570);
+						incrCount(1100439041);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
-							// Line: 66
+							// Line: 70
 							final_loc = (Integer)event.get("sem:loc");
-							iristk.flow.DialogFlow.say state12 = new iristk.flow.DialogFlow.say();
-							StringCreator string13 = new StringCreator();
-							string13.append("The weather for this day is");
-							state12.setText(string13.toString());
-							if (!flowThread.callState(state12, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 65, 77)))) {
+							// Line: 71
+							final_date = (Integer)event.get("sem:day");
+							// Line: 72
+							if (data[final_loc][final_date] == 2) {
+								iristk.flow.DialogFlow.say state8 = new iristk.flow.DialogFlow.say();
+								StringCreator string9 = new StringCreator();
+								string9.append("The snow conditions for this day are Great. Have Fun.");
+								state8.setText(string9.toString());
+								if (!flowThread.callState(state8, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 72, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 74
+								Final state10 = new Final();
+								flowThread.gotoState(state10, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 74, 26)));
 								eventResult = EVENT_ABORTED;
 								break EXECUTION;
 							}
-							// Line: 69
-							Pick_Date state14 = new Pick_Date();
-							flowThread.gotoState(state14, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 69, 29)));
-							eventResult = EVENT_ABORTED;
-							break EXECUTION;
+							// Line: 76
+							if (data[final_loc][final_date] == 1) {
+								iristk.flow.DialogFlow.say state11 = new iristk.flow.DialogFlow.say();
+								StringCreator string12 = new StringCreator();
+								string12.append("The snow conditions for this day are Okay but not Great.");
+								state11.setText(string12.toString());
+								if (!flowThread.callState(state11, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 76, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 78
+								Confirm state13 = new Confirm();
+								flowThread.gotoState(state13, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 78, 28)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 80
+							if (data[final_loc][final_date] == 0) {
+								iristk.flow.DialogFlow.say state14 = new iristk.flow.DialogFlow.say();
+								StringCreator string15 = new StringCreator();
+								string15.append("The won't be enough snow on this day to go skiing.");
+								state14.setText(string15.toString());
+								if (!flowThread.callState(state14, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 80, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 82
+								ChangeDateOrLoc state16 = new ChangeDateOrLoc();
+								flowThread.gotoState(state16, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 82, 36)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
 						}
 						if (eventResult != EVENT_IGNORED) return eventResult;
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 65, 77));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 69, 77));
 			}
-			// Line: 74
-			try {
-				count = getCount(204349222) + 1;
-				if (event.triggers("sense.user.speak")) {
-					if (event.has("sem:dontKnow")) {
-						incrCount(204349222);
-						eventResult = EVENT_CONSUMED;
-						EXECUTION: {
-							// Line: 75
-							When state15 = new When();
-							flowThread.gotoState(state15, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 75, 23)));
-							eventResult = EVENT_ABORTED;
-							break EXECUTION;
-						}
-						if (eventResult != EVENT_IGNORED) return eventResult;
-					}
-				}
-			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 74, 63));
-			}
-			eventResult = super.onFlowEvent(event);
-			if (eventResult != EVENT_IGNORED) return eventResult;
-			eventResult = callerHandlers(event);
-			if (eventResult != EVENT_IGNORED) return eventResult;
-			return EVENT_IGNORED;
-		}
-
-	}
-
-
-	private class Pick_Date extends Dialog {
-
-		final State currentState = this;
-
-
-		@Override
-		public void setFlowThread(FlowRunner.FlowThread flowThread) {
-			super.setFlowThread(flowThread);
-		}
-
-		@Override
-		public void onentry() throws Exception {
-			int eventResult;
-			Event event = new Event("state.enter");
-			// Line: 80
-			try {
-				EXECUTION: {
-					int count = getCount(2110121908) + 1;
-					incrCount(2110121908);
-					iristk.flow.DialogFlow.say state16 = new iristk.flow.DialogFlow.say();
-					StringCreator string17 = new StringCreator();
-					string17.append("Please pick a date, Otherwise shall I suggest another location?");
-					state16.setText(string17.toString());
-					if (!flowThread.callState(state16, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 80, 12)))) {
-						eventResult = EVENT_ABORTED;
-						break EXECUTION;
-					}
-					iristk.flow.DialogFlow.listen state18 = new iristk.flow.DialogFlow.listen();
-					if (!flowThread.callState(state18, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 80, 12)))) {
-						eventResult = EVENT_ABORTED;
-						break EXECUTION;
-					}
-				}
-			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 80, 12));
-			}
-		}
-
-		@Override
-		public int onFlowEvent(Event event) throws Exception {
-			int eventResult;
-			int count;
-			// Line: 84
-			try {
-				count = getCount(1973538135) + 1;
-				if (event.triggers("sense.user.speak")) {
-					if (event.has("sem:day")) {
-						incrCount(1973538135);
-						eventResult = EVENT_CONSUMED;
-						EXECUTION: {
-							// Line: 85
-							final_date = (Integer)event.get("sem:day");
-							// Line: 86
-							Final state19 = new Final();
-							flowThread.gotoState(state19, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 86, 25)));
-							eventResult = EVENT_ABORTED;
-							break EXECUTION;
-						}
-						if (eventResult != EVENT_IGNORED) return eventResult;
-					}
-				}
-			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 84, 58));
-			}
-			// Line: 88
+			// Line: 86
 			try {
 				count = getCount(515132998) + 1;
 				if (event.triggers("sense.user.speak")) {
-					if (event.has("sem:yes")) {
+					if (event.has("sem:loc")) {
 						incrCount(515132998);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
-							// Line: 89
-							When state20 = new When();
-							flowThread.gotoState(state20, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 89, 24)));
+							// Line: 87
+							final_loc = (Integer)event.get("sem:loc");
+							// Line: 88
+							SuggestDay state17 = new SuggestDay();
+							flowThread.gotoState(state17, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 88, 30)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
@@ -433,7 +369,27 @@ public class GuessFlow extends iristk.flow.Flow {
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 88, 58));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 86, 58));
+			}
+			// Line: 91
+			try {
+				count = getCount(1586600255) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:dontKnow")) {
+						incrCount(1586600255);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 92
+							When state18 = new When();
+							flowThread.gotoState(state18, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 92, 24)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 91, 63));
 			}
 			eventResult = super.onFlowEvent(event);
 			if (eventResult != EVENT_IGNORED) return eventResult;
@@ -459,27 +415,27 @@ public class GuessFlow extends iristk.flow.Flow {
 		public void onentry() throws Exception {
 			int eventResult;
 			Event event = new Event("state.enter");
-			// Line: 94
+			// Line: 97
 			try {
 				EXECUTION: {
-					int count = getCount(1651191114) + 1;
-					incrCount(1651191114);
-					iristk.flow.DialogFlow.say state21 = new iristk.flow.DialogFlow.say();
-					StringCreator string22 = new StringCreator();
-					string22.append("Pick a day for the next week, please!");
-					state21.setText(string22.toString());
-					if (!flowThread.callState(state21, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 94, 12)))) {
+					int count = getCount(212628335) + 1;
+					incrCount(212628335);
+					iristk.flow.DialogFlow.say state19 = new iristk.flow.DialogFlow.say();
+					StringCreator string20 = new StringCreator();
+					string20.append("Pick a day for the next week, please!");
+					state19.setText(string20.toString());
+					if (!flowThread.callState(state19, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 97, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
-					iristk.flow.DialogFlow.listen state23 = new iristk.flow.DialogFlow.listen();
-					if (!flowThread.callState(state23, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 94, 12)))) {
+					iristk.flow.DialogFlow.listen state21 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state21, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 97, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 94, 12));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 97, 12));
 			}
 		}
 
@@ -487,49 +443,19 @@ public class GuessFlow extends iristk.flow.Flow {
 		public int onFlowEvent(Event event) throws Exception {
 			int eventResult;
 			int count;
-			// Line: 98
+			// Line: 101
 			try {
-				count = getCount(1586600255) + 1;
+				count = getCount(1579572132) + 1;
 				if (event.triggers("sense.user.speak")) {
 					if (event.has("sem:day")) {
-						incrCount(1586600255);
+						incrCount(1579572132);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
-							// Line: 99
+							// Line: 102
 							final_date = (Integer)event.get("sem:day");
-							iristk.flow.DialogFlow.say state24 = new iristk.flow.DialogFlow.say();
-							StringCreator string25 = new StringCreator();
-							string25.append("On");
-							// Line: 99
-							string25.append(days[final_date]);
-							string25.append("the weather would be great for skiing at the following locations:");
-							state24.setText(string25.toString());
-							if (!flowThread.callState(state24, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 98, 58)))) {
-								eventResult = EVENT_ABORTED;
-								break EXECUTION;
-							}
-							// Line: 101
-							{
-								RepeatHandler l = new RepeatHandler(5);
-								while (l.getPosition() < l.getLength()) {
-									// Line: 102
-									if (data[l.getPosition()][(Integer)event.get("sem:day")] == 2) {
-										iristk.flow.DialogFlow.say state26 = new iristk.flow.DialogFlow.say();
-										StringCreator string27 = new StringCreator();
-										// Line: 102
-										string27.append(locations[l.getPosition()]);
-										state26.setText(string27.toString());
-										if (!flowThread.callState(state26, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 102, 67)))) {
-											eventResult = EVENT_ABORTED;
-											break EXECUTION;
-										}
-									}
-									l.next();
-								}
-							}
-							// Line: 106
-							Pick_location state28 = new Pick_location();
-							flowThread.gotoState(state28, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 106, 33)));
+							// Line: 103
+							SuggestLocation state22 = new SuggestLocation();
+							flowThread.gotoState(state22, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 103, 35)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
@@ -537,19 +463,19 @@ public class GuessFlow extends iristk.flow.Flow {
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 98, 58));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 101, 58));
 			}
-			// Line: 108
+			// Line: 105
 			try {
-				count = getCount(359023572) + 1;
+				count = getCount(2111991224) + 1;
 				if (event.triggers("sense.user.speak")) {
 					if (event.has("sem:yes")) {
-						incrCount(359023572);
+						incrCount(2111991224);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
-							// Line: 109
-							When state29 = new When();
-							flowThread.gotoState(state29, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 109, 24)));
+							// Line: 106
+							When state23 = new When();
+							flowThread.gotoState(state23, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 106, 24)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
@@ -557,8 +483,153 @@ public class GuessFlow extends iristk.flow.Flow {
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 108, 58));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 105, 58));
 			}
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class SuggestLocation extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 111
+			try {
+				EXECUTION: {
+					int count = getCount(1993134103) + 1;
+					incrCount(1993134103);
+					iristk.flow.DialogFlow.say state24 = new iristk.flow.DialogFlow.say();
+					StringCreator string25 = new StringCreator();
+					string25.append("On");
+					// Line: 111
+					string25.append(days[final_date]);
+					string25.append("the weather would be great for skiing at the following locations:");
+					state24.setText(string25.toString());
+					if (!flowThread.callState(state24, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 111, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					// Line: 113
+					{
+						RepeatHandler l = new RepeatHandler(5);
+						while (l.getPosition() < l.getLength()) {
+							// Line: 114
+							if (data[l.getPosition()][(Integer)event.get("sem:day")] == 2) {
+								iristk.flow.DialogFlow.say state26 = new iristk.flow.DialogFlow.say();
+								StringCreator string27 = new StringCreator();
+								// Line: 114
+								string27.append(locations[l.getPosition()]);
+								state26.setText(string27.toString());
+								if (!flowThread.callState(state26, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 114, 67)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+							}
+							l.next();
+						}
+					}
+					// Line: 118
+					Pick_location state28 = new Pick_location();
+					flowThread.gotoState(state28, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 118, 33)));
+					eventResult = EVENT_ABORTED;
+					break EXECUTION;
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 111, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class SuggestDay extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 123
+			try {
+				EXECUTION: {
+					int count = getCount(604107971) + 1;
+					incrCount(604107971);
+					iristk.flow.DialogFlow.say state29 = new iristk.flow.DialogFlow.say();
+					StringCreator string30 = new StringCreator();
+					string30.append("The weather is great for skiing on the following days:");
+					state29.setText(string30.toString());
+					if (!flowThread.callState(state29, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 123, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					// Line: 125
+					{
+						RepeatHandler d = new RepeatHandler(7);
+						while (d.getPosition() < d.getLength()) {
+							// Line: 126
+							if (data[(Integer)event.get("sem:loc")][d.getPosition()] == 2) {
+								iristk.flow.DialogFlow.say state31 = new iristk.flow.DialogFlow.say();
+								StringCreator string32 = new StringCreator();
+								// Line: 126
+								string32.append(days[d.getPosition()]);
+								state31.setText(string32.toString());
+								if (!flowThread.callState(state31, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 126, 67)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+							}
+							d.next();
+						}
+					}
+					// Line: 131
+					Pick_Date state33 = new Pick_Date();
+					flowThread.gotoState(state33, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 131, 29)));
+					eventResult = EVENT_ABORTED;
+					break EXECUTION;
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 123, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
 			eventResult = super.onFlowEvent(event);
 			if (eventResult != EVENT_IGNORED) return eventResult;
 			eventResult = callerHandlers(event);
@@ -583,27 +654,27 @@ public class GuessFlow extends iristk.flow.Flow {
 		public void onentry() throws Exception {
 			int eventResult;
 			Event event = new Event("state.enter");
-			// Line: 114
+			// Line: 136
 			try {
 				EXECUTION: {
-					int count = getCount(292938459) + 1;
-					incrCount(292938459);
-					iristk.flow.DialogFlow.say state30 = new iristk.flow.DialogFlow.say();
-					StringCreator string31 = new StringCreator();
-					string31.append("Please pick a location, Otherwise do you want to consider another day?");
-					state30.setText(string31.toString());
-					if (!flowThread.callState(state30, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 114, 12)))) {
+					int count = getCount(1101288798) + 1;
+					incrCount(1101288798);
+					iristk.flow.DialogFlow.say state34 = new iristk.flow.DialogFlow.say();
+					StringCreator string35 = new StringCreator();
+					string35.append("Please pick a location, Otherwise do you want to consider another day?");
+					state34.setText(string35.toString());
+					if (!flowThread.callState(state34, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 136, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
-					iristk.flow.DialogFlow.listen state32 = new iristk.flow.DialogFlow.listen();
-					if (!flowThread.callState(state32, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 114, 12)))) {
+					iristk.flow.DialogFlow.listen state36 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state36, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 136, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 114, 12));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 136, 12));
 			}
 		}
 
@@ -611,19 +682,19 @@ public class GuessFlow extends iristk.flow.Flow {
 		public int onFlowEvent(Event event) throws Exception {
 			int eventResult;
 			int count;
-			// Line: 118
+			// Line: 140
 			try {
-				count = getCount(1993134103) + 1;
+				count = getCount(971848845) + 1;
 				if (event.triggers("sense.user.speak")) {
 					if (event.has("sem:loc")) {
-						incrCount(1993134103);
+						incrCount(971848845);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
-							// Line: 119
+							// Line: 141
 							final_loc = (Integer)event.get("sem:loc");
-							// Line: 120
-							Final state33 = new Final();
-							flowThread.gotoState(state33, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 120, 25)));
+							// Line: 142
+							Final state37 = new Final();
+							flowThread.gotoState(state37, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 142, 25)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
@@ -631,19 +702,27 @@ public class GuessFlow extends iristk.flow.Flow {
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 118, 58));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 140, 58));
 			}
-			// Line: 122
+			// Line: 144
 			try {
-				count = getCount(1130478920) + 1;
+				count = getCount(2104457164) + 1;
 				if (event.triggers("sense.user.speak")) {
 					if (event.has("sem:yes")) {
-						incrCount(1130478920);
+						incrCount(2104457164);
 						eventResult = EVENT_CONSUMED;
 						EXECUTION: {
-							// Line: 123
-							When state34 = new When();
-							flowThread.gotoState(state34, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 123, 24)));
+							// Line: 145
+							if (final_loc != -1) {
+								// Line: 146
+								SuggestDay state38 = new SuggestDay();
+								flowThread.gotoState(state38, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 146, 31)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 148
+							When state39 = new When();
+							flowThread.gotoState(state39, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 148, 24)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
@@ -651,7 +730,556 @@ public class GuessFlow extends iristk.flow.Flow {
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 122, 58));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 144, 58));
+			}
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class Pick_Date extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 153
+			try {
+				EXECUTION: {
+					int count = getCount(1617791695) + 1;
+					incrCount(1617791695);
+					iristk.flow.DialogFlow.say state40 = new iristk.flow.DialogFlow.say();
+					StringCreator string41 = new StringCreator();
+					string41.append("Please pick a date, Otherwise shall I suggest another location?");
+					state40.setText(string41.toString());
+					if (!flowThread.callState(state40, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 153, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					iristk.flow.DialogFlow.listen state42 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state42, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 153, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 153, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
+			// Line: 157
+			try {
+				count = getCount(1192108080) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:day")) {
+						incrCount(1192108080);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 158
+							final_date = (Integer)event.get("sem:day");
+							// Line: 159
+							Final state43 = new Final();
+							flowThread.gotoState(state43, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 159, 25)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 157, 58));
+			}
+			// Line: 161
+			try {
+				count = getCount(537548559) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:yes")) {
+						incrCount(537548559);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 162
+							if (final_date != -1) {
+								// Line: 163
+								SuggestLocation state44 = new SuggestLocation();
+								flowThread.gotoState(state44, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 163, 36)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 165
+							Where state45 = new Where();
+							flowThread.gotoState(state45, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 165, 25)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 161, 58));
+			}
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class Change_Location extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 170
+			try {
+				EXECUTION: {
+					int count = getCount(992136656) + 1;
+					incrCount(992136656);
+					iristk.flow.DialogFlow.say state46 = new iristk.flow.DialogFlow.say();
+					StringCreator string47 = new StringCreator();
+					string47.append("Please pick a new Location.");
+					state46.setText(string47.toString());
+					if (!flowThread.callState(state46, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 170, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					iristk.flow.DialogFlow.listen state48 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state48, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 170, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 170, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
+			// Line: 174
+			try {
+				count = getCount(511833308) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:loc")) {
+						incrCount(511833308);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 175
+							final_loc = (Integer)event.get("sem:loc");
+							// Line: 176
+							if (data[final_loc][final_date] == 2) {
+								iristk.flow.DialogFlow.say state49 = new iristk.flow.DialogFlow.say();
+								StringCreator string50 = new StringCreator();
+								string50.append("The snow conditions for this day are Great. Have Fun.");
+								state49.setText(string50.toString());
+								if (!flowThread.callState(state49, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 176, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 178
+								Final state51 = new Final();
+								flowThread.gotoState(state51, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 178, 26)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 180
+							if (data[final_loc][final_date] == 1) {
+								iristk.flow.DialogFlow.say state52 = new iristk.flow.DialogFlow.say();
+								StringCreator string53 = new StringCreator();
+								string53.append("The snow conditions for this day are Okay but not Great.");
+								state52.setText(string53.toString());
+								if (!flowThread.callState(state52, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 180, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 182
+								Confirm state54 = new Confirm();
+								flowThread.gotoState(state54, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 182, 28)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 184
+							if (data[final_loc][final_date] == 0) {
+								iristk.flow.DialogFlow.say state55 = new iristk.flow.DialogFlow.say();
+								StringCreator string56 = new StringCreator();
+								string56.append("The won't be enough snow on this day to go skiing.");
+								state55.setText(string56.toString());
+								if (!flowThread.callState(state55, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 184, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 186
+								ChangeDateOrLoc state57 = new ChangeDateOrLoc();
+								flowThread.gotoState(state57, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 186, 36)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 174, 58));
+			}
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class Change_Day extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 192
+			try {
+				EXECUTION: {
+					int count = getCount(1552787810) + 1;
+					incrCount(1552787810);
+					iristk.flow.DialogFlow.say state58 = new iristk.flow.DialogFlow.say();
+					StringCreator string59 = new StringCreator();
+					string59.append("Please pick a new Date.");
+					state58.setText(string59.toString());
+					if (!flowThread.callState(state58, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 192, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					iristk.flow.DialogFlow.listen state60 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state60, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 192, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 192, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
+			// Line: 196
+			try {
+				count = getCount(1361960727) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:day")) {
+						incrCount(1361960727);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 197
+							final_loc = (Integer)event.get("sem:loc");
+							// Line: 198
+							if (data[final_loc][final_date] == 2) {
+								iristk.flow.DialogFlow.say state61 = new iristk.flow.DialogFlow.say();
+								StringCreator string62 = new StringCreator();
+								string62.append("The snow conditions for this day are Great. Have Fun.");
+								state61.setText(string62.toString());
+								if (!flowThread.callState(state61, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 198, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 200
+								Final state63 = new Final();
+								flowThread.gotoState(state63, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 200, 26)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 202
+							if (data[final_loc][final_date] == 1) {
+								iristk.flow.DialogFlow.say state64 = new iristk.flow.DialogFlow.say();
+								StringCreator string65 = new StringCreator();
+								string65.append("The snow conditions for this day are Okay but not Great.");
+								state64.setText(string65.toString());
+								if (!flowThread.callState(state64, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 202, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 204
+								Confirm state66 = new Confirm();
+								flowThread.gotoState(state66, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 204, 28)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 206
+							if (data[final_loc][final_date] == 0) {
+								iristk.flow.DialogFlow.say state67 = new iristk.flow.DialogFlow.say();
+								StringCreator string68 = new StringCreator();
+								string68.append("The won't be enough snow on this day to go skiing.");
+								state67.setText(string68.toString());
+								if (!flowThread.callState(state67, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 206, 48)))) {
+									eventResult = EVENT_ABORTED;
+									break EXECUTION;
+								}
+								// Line: 208
+								ChangeDateOrLoc state69 = new ChangeDateOrLoc();
+								flowThread.gotoState(state69, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 208, 36)));
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 196, 58));
+			}
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class Confirm extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 214
+			try {
+				EXECUTION: {
+					int count = getCount(248609774) + 1;
+					incrCount(248609774);
+					iristk.flow.DialogFlow.say state70 = new iristk.flow.DialogFlow.say();
+					StringCreator string71 = new StringCreator();
+					string71.append("Is this good enough?");
+					state70.setText(string71.toString());
+					if (!flowThread.callState(state70, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 214, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					iristk.flow.DialogFlow.listen state72 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state72, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 214, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 214, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
+			// Line: 219
+			try {
+				count = getCount(708049632) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:yes")) {
+						incrCount(708049632);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							iristk.flow.DialogFlow.say state73 = new iristk.flow.DialogFlow.say();
+							StringCreator string74 = new StringCreator();
+							string74.append("Okay, goodbye");
+							state73.setText(string74.toString());
+							if (!flowThread.callState(state73, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 219, 58)))) {
+								eventResult = EVENT_ABORTED;
+								break EXECUTION;
+							}
+							// Line: 221
+							System.exit(0);
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 219, 58));
+			}
+			// Line: 223
+			try {
+				count = getCount(285377351) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:no")) {
+						incrCount(285377351);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 224
+							ChangeDateOrLoc state75 = new ChangeDateOrLoc();
+							flowThread.gotoState(state75, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 224, 35)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 223, 57));
+			}
+			eventResult = super.onFlowEvent(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			eventResult = callerHandlers(event);
+			if (eventResult != EVENT_IGNORED) return eventResult;
+			return EVENT_IGNORED;
+		}
+
+	}
+
+
+	private class ChangeDateOrLoc extends Dialog {
+
+		final State currentState = this;
+
+
+		@Override
+		public void setFlowThread(FlowRunner.FlowThread flowThread) {
+			super.setFlowThread(flowThread);
+		}
+
+		@Override
+		public void onentry() throws Exception {
+			int eventResult;
+			Event event = new Event("state.enter");
+			// Line: 229
+			try {
+				EXECUTION: {
+					int count = getCount(716083600) + 1;
+					incrCount(716083600);
+					iristk.flow.DialogFlow.say state76 = new iristk.flow.DialogFlow.say();
+					StringCreator string77 = new StringCreator();
+					string77.append("Would you like change the Date, Location or start from the beginning?");
+					state76.setText(string77.toString());
+					if (!flowThread.callState(state76, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 229, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+					iristk.flow.DialogFlow.listen state78 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state78, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 229, 12)))) {
+						eventResult = EVENT_ABORTED;
+						break EXECUTION;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 229, 12));
+			}
+		}
+
+		@Override
+		public int onFlowEvent(Event event) throws Exception {
+			int eventResult;
+			int count;
+			// Line: 234
+			try {
+				count = getCount(2001112025) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:cday")) {
+						incrCount(2001112025);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 235
+							final_date = -1;
+							// Line: 236
+							SuggestDay state79 = new SuggestDay();
+							flowThread.gotoState(state79, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 236, 30)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 234, 59));
+			}
+			// Line: 238
+			try {
+				count = getCount(2054881392) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:cloc")) {
+						incrCount(2054881392);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 239
+							final_loc = -1;
+							// Line: 240
+							SuggestLocation state80 = new SuggestLocation();
+							flowThread.gotoState(state80, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 240, 35)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 238, 59));
+			}
+			// Line: 242
+			try {
+				count = getCount(116211441) + 1;
+				if (event.triggers("sense.user.speak")) {
+					if (event.has("sem:start")) {
+						incrCount(116211441);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 243
+							Where state81 = new Where();
+							flowThread.gotoState(state81, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 243, 25)));
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 242, 60));
 			}
 			eventResult = super.onFlowEvent(event);
 			if (eventResult != EVENT_IGNORED) return eventResult;
@@ -677,27 +1305,27 @@ public class GuessFlow extends iristk.flow.Flow {
 		public void onentry() throws Exception {
 			int eventResult;
 			Event event = new Event("state.enter");
-			// Line: 128
+			// Line: 248
 			try {
 				EXECUTION: {
-					int count = getCount(123961122) + 1;
-					incrCount(123961122);
-					iristk.flow.DialogFlow.say state35 = new iristk.flow.DialogFlow.say();
-					StringCreator string36 = new StringCreator();
-					string36.append("Do you have any further questions?");
-					state35.setText(string36.toString());
-					if (!flowThread.callState(state35, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 128, 12)))) {
+					int count = getCount(242481580) + 1;
+					incrCount(242481580);
+					iristk.flow.DialogFlow.say state82 = new iristk.flow.DialogFlow.say();
+					StringCreator string83 = new StringCreator();
+					string83.append("Do you want to check another day or location?");
+					state82.setText(string83.toString());
+					if (!flowThread.callState(state82, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 248, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
-					iristk.flow.DialogFlow.listen state37 = new iristk.flow.DialogFlow.listen();
-					if (!flowThread.callState(state37, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 128, 12)))) {
+					iristk.flow.DialogFlow.listen state84 = new iristk.flow.DialogFlow.listen();
+					if (!flowThread.callState(state84, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 248, 12)))) {
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 128, 12));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 248, 12));
 			}
 		}
 
@@ -705,28 +1333,48 @@ public class GuessFlow extends iristk.flow.Flow {
 		public int onFlowEvent(Event event) throws Exception {
 			int eventResult;
 			int count;
-			// Line: 133
+			// Line: 253
 			try {
-				count = getCount(1982791261) + 1;
+				count = getCount(1627800613) + 1;
 				if (event.triggers("sense.user.speak")) {
-					incrCount(1982791261);
-					eventResult = EVENT_CONSUMED;
-					EXECUTION: {
-						iristk.flow.DialogFlow.say state38 = new iristk.flow.DialogFlow.say();
-						StringCreator string39 = new StringCreator();
-						string39.append("Okay, goodbye");
-						state38.setText(string39.toString());
-						if (!flowThread.callState(state38, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 133, 36)))) {
+					if (event.has("sem:yes")) {
+						incrCount(1627800613);
+						eventResult = EVENT_CONSUMED;
+						EXECUTION: {
+							// Line: 254
+							Where state85 = new Where();
+							flowThread.gotoState(state85, currentState, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 254, 25)));
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
-						// Line: 135
+						if (eventResult != EVENT_IGNORED) return eventResult;
+					}
+				}
+			} catch (Exception e) {
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 253, 58));
+			}
+			// Line: 257
+			try {
+				count = getCount(697960108) + 1;
+				if (event.triggers("sense.user.speak")) {
+					incrCount(697960108);
+					eventResult = EVENT_CONSUMED;
+					EXECUTION: {
+						iristk.flow.DialogFlow.say state86 = new iristk.flow.DialogFlow.say();
+						StringCreator string87 = new StringCreator();
+						string87.append("Okay, goodbye");
+						state86.setText(string87.toString());
+						if (!flowThread.callState(state86, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 257, 36)))) {
+							eventResult = EVENT_ABORTED;
+							break EXECUTION;
+						}
+						// Line: 259
 						System.exit(0);
 					}
 					if (eventResult != EVENT_IGNORED) return eventResult;
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 133, 36));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 257, 36));
 			}
 			eventResult = super.onFlowEvent(event);
 			if (eventResult != EVENT_IGNORED) return eventResult;
@@ -758,55 +1406,55 @@ public class GuessFlow extends iristk.flow.Flow {
 		public int onFlowEvent(Event event) throws Exception {
 			int eventResult;
 			int count;
-			// Line: 140
+			// Line: 264
 			try {
-				count = getCount(942731712) + 1;
+				count = getCount(2066940133) + 1;
 				if (event.triggers("sense.user.silence")) {
-					incrCount(942731712);
+					incrCount(2066940133);
 					eventResult = EVENT_CONSUMED;
 					EXECUTION: {
-						iristk.flow.DialogFlow.say state40 = new iristk.flow.DialogFlow.say();
-						StringCreator string41 = new StringCreator();
-						string41.append("I am sorry, I didn't hear anything.");
-						state40.setText(string41.toString());
-						if (!flowThread.callState(state40, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 140, 38)))) {
+						iristk.flow.DialogFlow.say state88 = new iristk.flow.DialogFlow.say();
+						StringCreator string89 = new StringCreator();
+						string89.append("I am sorry, I didn't hear anything.");
+						state88.setText(string89.toString());
+						if (!flowThread.callState(state88, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 264, 38)))) {
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
-						// Line: 142
-						flowThread.reentryState(this, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 142, 14)));
+						// Line: 266
+						flowThread.reentryState(this, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 266, 14)));
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 					if (eventResult != EVENT_IGNORED) return eventResult;
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 140, 38));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 264, 38));
 			}
-			// Line: 144
+			// Line: 268
 			try {
-				count = getCount(1910163204) + 1;
+				count = getCount(325333723) + 1;
 				if (event.triggers("sense.user.speak")) {
-					incrCount(1910163204);
+					incrCount(325333723);
 					eventResult = EVENT_CONSUMED;
 					EXECUTION: {
-						iristk.flow.DialogFlow.say state42 = new iristk.flow.DialogFlow.say();
-						StringCreator string43 = new StringCreator();
-						string43.append("I am sorry, I didn't get that.");
-						state42.setText(string43.toString());
-						if (!flowThread.callState(state42, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 144, 36)))) {
+						iristk.flow.DialogFlow.say state90 = new iristk.flow.DialogFlow.say();
+						StringCreator string91 = new StringCreator();
+						string91.append("I am sorry, I didn't get that.");
+						state90.setText(string91.toString());
+						if (!flowThread.callState(state90, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 268, 36)))) {
 							eventResult = EVENT_ABORTED;
 							break EXECUTION;
 						}
-						// Line: 146
-						flowThread.reentryState(this, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 146, 14)));
+						// Line: 270
+						flowThread.reentryState(this, new FlowEventInfo(currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 270, 14)));
 						eventResult = EVENT_ABORTED;
 						break EXECUTION;
 					}
 					if (eventResult != EVENT_IGNORED) return eventResult;
 				}
 			} catch (Exception e) {
-				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\Documents\\IrisTK-master\\app\\DialogueProject\\skiing\\src\\iristk\\app\\guess\\GuessFlow.xml"), 144, 36));
+				throw new FlowException(e, currentState, event, new XMLLocation(new File("C:\\Users\\Roman\\git\\IrisTK\\app\\guess\\src\\iristk\\app\\guess\\GuessFlow.xml"), 268, 36));
 			}
 			eventResult = super.onFlowEvent(event);
 			if (eventResult != EVENT_IGNORED) return eventResult;

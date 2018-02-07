@@ -16,7 +16,9 @@
 			<dialog:say>Hello, shall we start?</dialog:say>	
 			<dialog:listen/>
 		</onentry>
-		
+		<onevent name="sense.user.speak" cond="event?:sem:no">
+			<goto state="Final"/>
+		</onevent>
 		<onevent name="sense.user.speak" cond="event?:sem:yes">
 			<exec>ran = new Random()</exec> 
 			<exec>data = new Integer[5][7]</exec>
@@ -63,8 +65,62 @@
 			<dialog:say>Where do you want to go?</dialog:say>
 			<dialog:listen/>
 		</onentry>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:loc and event?:sem:day">
+			<exec>final_loc = (Integer)event:sem:loc</exec>
+			<exec>final_date = (Integer)event:sem:day</exec>
+			<if cond="data[final_loc][final_date] == 2">
+				<dialog:say>The snow conditions for this day are Great. Have Fun.</dialog:say>
+				<goto state="Final"/>
+			</if>
+			<if cond="data[final_loc][final_date] == 1">
+				<dialog:say>The snow conditions for this day are Okay but not Great.</dialog:say>
+				<goto state="Confirm"/>
+			</if>
+			<if cond="data[final_loc][final_date] == 0">
+				<dialog:say>The won't be enough snow on this day to go skiing.</dialog:say>
+				<goto state="ChangeDateOrLoc"/>
+			</if>			
+		</onevent>
+		
 		<onevent name="sense.user.speak" cond="event?:sem:loc">
 			<exec>final_loc = (Integer)event:sem:loc;</exec>
+			<goto state="SuggestDay"/>
+		</onevent>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:dontKnow">
+			<goto state="When"/>
+		</onevent>
+	</state>
+		
+	<state id="When" extends="Dialog">
+		<onentry>
+			<dialog:say>Pick a day for the next week, please!</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:day">
+			<exec>final_date = (Integer)event:sem:day</exec>
+			<goto state="SuggestLocation"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<goto state="When"/>
+		</onevent>		
+	</state>
+	
+	<state id ="SuggestLocation" extends="Dialog">
+		<onentry>
+			<dialog:say>On <expr>days[final_date]</expr> the weather would be great for skiing at the following locations:</dialog:say>
+			<repeat times="5" handler="l">
+				<if cond="data[l.getPosition()][(Integer)event:sem:day] == 2">
+					<dialog:say><expr>locations[l.getPosition()]</expr></dialog:say>
+				</if>
+			</repeat>
+			<goto state="Pick_location"/>
+		</onentry>
+	</state>
+	
+	<state id ="SuggestDay" extends="Dialog">
+		<onentry>
 			<dialog:say>The weather is great for skiing on the following days:</dialog:say>
 			<repeat times="7" handler="d">
 				<if cond="data[(Integer)event:sem:loc][d.getPosition()] == 2">
@@ -73,63 +129,7 @@
 			</repeat>
 			
 			<goto state="Pick_Date"/>
-		</onevent>
-		
-		<onevent name="sense.user.speak" cond="event?:sem:loc and event?:sem:day">
-			<exec>final_loc = (Integer)event:sem:loc</exec>
-			<exec>final_date = (Integer)event:sem:day</exec>
-			<if cond="data[final_loc][fianl_date] == 2">
-				<dialog:say>The snow conditions for this day are Greate. Have Fun.</dialog:say>
-				<goto state="Final"/>
-			</if>
-			<if cond="data[final_loc][fianl_date] == 1">
-				<dialog:say>The snow conditions for this day are Okay but not Great.</dialog:say>
-				<goto state="Confirm"/>
-			</if>
-			<if cond="data[final_loc][fianl_date] == 0">
-				<dialog:say>The won't be enough snow on this day to go skiing.</dialog:say>
-				<goto state="ChangeDateOrLoc"/>
-			</if>			
-
-		</onevent>
-		
-		<onevent name="sense.user.speak" cond="event?:sem:dontKnow">
-		<goto state="When"/>
-		</onevent>
-	</state>
-	
-	<state id="Pick_Date" extends="Dialog">
-		<onentry>
-			<dialog:say>Please pick a date, Otherwise shall I suggest another location?</dialog:say>
-			<dialog:listen/>
 		</onentry>
-		<onevent name="sense.user.speak" cond="event?:sem:day">
-			<exec>final_date = (Integer)event:sem:day</exec>
-			<goto state="Final"/>
-		</onevent>
-		<onevent name="sense.user.speak" cond="event?:sem:yes">
-			<goto state="When"/>
-		</onevent>		
-	</state>
-	
-	<state id="When" extends="Dialog">
-		<onentry>
-			<dialog:say>Pick a day for the next week, please!</dialog:say>
-			<dialog:listen/>
-		</onentry>
-		<onevent name="sense.user.speak" cond="event?:sem:day">
-			<exec>final_date = (Integer)event:sem:day</exec>
-			<dialog:say>On <expr>days[final_date]</expr> the weather would be great for skiing at the following locations:</dialog:say>
-			<repeat times="5" handler="l">
-				<if cond="data[l.getPosition()][(Integer)event:sem:day] == 2">
-					<dialog:say><expr>locations[l.getPosition()]</expr></dialog:say>
-				</if>
-			</repeat>
-			<goto state="Pick_location"/>
-		</onevent>
-		<onevent name="sense.user.speak" cond="event?:sem:yes">
-			<goto state="When"/>
-		</onevent>		
 	</state>
 	
 	<state id="Pick_location" extends="Dialog">
@@ -142,10 +142,74 @@
 			<goto state="Final"/>
 		</onevent>
 		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<if cond="final_loc != -1">
+				<goto state="SuggestDay"/>
+			</if>
 			<goto state="When"/>
 		</onevent>		
 	</state>
 	
+	<state id="Pick_Date" extends="Dialog">
+		<onentry>
+			<dialog:say>Please pick a date, Otherwise shall I suggest another location?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:day">
+			<exec>final_date = (Integer)event:sem:day</exec>
+			<goto state="Final"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<if cond="final_date != -1">
+				<goto state="SuggestLocation"/>
+			</if>
+			<goto state="Where"/>
+		</onevent>		
+	</state>
+	
+	<state id="Change_Location" extends="Dialog">
+		<onentry>
+			<dialog:say>Please pick a new Location.</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:loc">
+			<exec>final_loc = (Integer)event:sem:loc;</exec>
+			<if cond="data[final_loc][final_date] == 2">
+				<dialog:say>The snow conditions for this day are Great. Have Fun.</dialog:say>
+				<goto state="Final"/>
+			</if>
+			<if cond="data[final_loc][final_date] == 1">
+				<dialog:say>The snow conditions for this day are Okay but not Great.</dialog:say>
+				<goto state="Confirm"/>
+			</if>
+			<if cond="data[final_loc][final_date] == 0">
+				<dialog:say>The won't be enough snow on this day to go skiing.</dialog:say>
+				<goto state="ChangeDateOrLoc"/>
+			</if>
+		</onevent>
+	</state>
+
+	<state id="Change_Day" extends="Dialog">
+		<onentry>
+			<dialog:say>Please pick a new Date.</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:day">
+			<exec>final_loc = (Integer)event:sem:loc;</exec>
+			<if cond="data[final_loc][final_date] == 2">
+				<dialog:say>The snow conditions for this day are Great. Have Fun.</dialog:say>
+				<goto state="Final"/>
+			</if>
+			<if cond="data[final_loc][final_date] == 1">
+				<dialog:say>The snow conditions for this day are Okay but not Great.</dialog:say>
+				<goto state="Confirm"/>
+			</if>
+			<if cond="data[final_loc][final_date] == 0">
+				<dialog:say>The won't be enough snow on this day to go skiing.</dialog:say>
+				<goto state="ChangeDateOrLoc"/>
+			</if>
+		</onevent>
+	</state>
+		
 	<state id="Confirm" extends="Dialog">
 		<onentry>
 			<dialog:say>Is this good enough?</dialog:say>
@@ -157,23 +221,23 @@
 			<exec>System.exit(0);</exec>
 		</onevent>
 		<onevent name="sense.user.speak" cond="event?:sem:no">
-			<goto state="Where"/>
+			<goto state="ChangeDateOrLoc"/>
 		</onevent>		
 	</state>
 	
 	<state id="ChangeDateOrLoc" extends="Dialog">
 		<onentry>
-			<dialog:say>Would you like change the Date, Location or start from the begginig?</dialog:say>
+			<dialog:say>Would you like change the Date, Location or start from the beginning?</dialog:say>
 			<dialog:listen/>
 		</onentry>
 		
-		<onevent name="sense.user.speak" cond="event?:sem:cdate">
+		<onevent name="sense.user.speak" cond="event?:sem:cday">
 			<exec>final_date = -1</exec>
-			<goto state="Pick_Date"/>
+			<goto state="SuggestDay"/>
 		</onevent>
 		<onevent name="sense.user.speak" cond="event?:sem:cloc">
 			<exec>final_loc = -1</exec>
-			<goto state="Pick_location"/>
+			<goto state="SuggestLocation"/>
 		</onevent>
 		<onevent name="sense.user.speak" cond="event?:sem:start">
 			<goto state="Where"/>
@@ -182,9 +246,13 @@
 	
 	<state id="Final" extends="Dialog">
 		<onentry>
-			<dialog:say>Do you have any further questions?</dialog:say>
+			<dialog:say>Do you want to check another day or location?</dialog:say>
 			<dialog:listen/>
 		</onentry>
+		
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<goto state="Where"/>
+		</onevent>	
 		
 		<onevent name="sense.user.speak">
 			<dialog:say>Okay, goodbye</dialog:say>
